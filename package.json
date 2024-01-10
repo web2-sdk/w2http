@@ -1,0 +1,56 @@
+{
+  "name": "@web2-sdk/auth.js",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "https://github.com/web2-sdk/authjs.git",
+  "author": "web2-sdk <wh0.web2sdkteam@gmail.com>",
+  "license": "AGPL-3.0",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "web2-sdk",
+    "auth",
+    "authjs",
+    "web-auth"
+  ],
+  "scripts": {
+    "build": "tsc --emitDeclarationOnly && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored && node ./post-build.js",
+    "build:no-fix": "tsc --emitDeclarationOnly && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
+    "test:watch": "clear && tsnd -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/test.ts",
+    "hot": "tsc --noEmit && yarn build && clear && node ./dist/index.js && rm -rf ./dist/",
+    "test": "clear && yarn build && clear && node ./dist/test.js && rm -rf ./dist/",
+    "spec": "clear && tsc --noEmit && jest --verbose --runInBand"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.7",
+    "@babel/node": "^7.22.19",
+    "@babel/plugin-transform-class-properties": "^7.23.3",
+    "@babel/plugin-transform-private-methods": "^7.23.3",
+    "@babel/preset-env": "^7.23.7",
+    "@babel/preset-typescript": "^7.23.3",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@types/crypto-js": "^4.2.1",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/next": "^9.0.0",
+    "@types/pg": "^8.10.9",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3"
+  }
+}
